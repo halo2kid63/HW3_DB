@@ -5,7 +5,7 @@ import java.util.*;
 public class DBConnect
 {
 
-    static Connection conn = null;
+    private static Connection conn = null;
 
     public static void connect()
     {
@@ -32,14 +32,21 @@ public class DBConnect
         }
     }
 
-    public static ResultSet query(String query)
+    public static ResultSet query(String query, boolean type)
     {
         Statement st;
         ResultSet rs = null;
 
         try {
             st = conn.createStatement();
-            rs = st.executeQuery(query);
+            if (type)
+            {
+                st.executeUpdate(query);
+            }
+            else
+            {
+                rs = st.executeQuery(query);
+            }
         }
         catch (SQLException e)
         {
