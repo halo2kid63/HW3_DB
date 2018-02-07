@@ -13,7 +13,7 @@ public class HW3 {
 
         rs = DBConnect.query(query);
 
-        if (!rs.next())
+        if (!rs.isBeforeFirst())
         {
             System.out.println("No data");
         }
